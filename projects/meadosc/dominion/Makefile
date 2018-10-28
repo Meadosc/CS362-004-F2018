@@ -9,6 +9,7 @@ dominion.o: dominion.h dominion.c rngs.o
 playdom: dominion.o playdom.c
 	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
 #To run playdom you need to entere: ./playdom <any integer number> like ./playdom 10*/
+
 testDrawCard: testDrawCard.c dominion.o rngs.o
 	gcc  -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
 
@@ -32,6 +33,17 @@ runtests: testDrawCard
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
+
+unittestresults: dominion.h dominion.c rngs.h rngs.c unittest1.c
+	rm -f unittestresults.out
+	echo "Results from running unit tests:" >> unittestresults.out
+	echo "unittest1.c:" >> unittestresults.out
+	gcc -o unittest1 unittest1.c dominion.h dominion.c rngs.h rngs.c  $(CFLAGS)
+	./unittest1 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+
+cleantests:
+	rm -f unittestresults.out
 
 all: playdom player 
 

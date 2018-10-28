@@ -1,0 +1,11 @@
+Results from running unit tests:
+unittest1.c:
+Test 2>1: PASSED
+Test -2>-1: PASSED
+Test 0==0: PASSED
+Test large/small: PASSED
+Test char 1: FAILED
+File 'dominion.c'
+Lines executed:1.07% of 560
+Creating 'dominion.c.gcov'
+
