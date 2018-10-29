@@ -16,22 +16,17 @@ char *inputString()
     int i = 0;
 
     while(i != 5){
-      myString[i] = rand() % 26 + 97;
+      int randomNum = rand() % 4;
+      if (randomNum == 0) myString[i] = 101; //e
+      if (randomNum == 1) myString[i] = 115; //s
+      if (randomNum == 2) myString[i] = 116; //t
+      if (randomNum == 3) myString[i] = 114; //r
+
       i = i + 1;
     }
     return myString;
 }
 
-/*
-//debug
-char aString[6];
-aString[0] = 'r';
-aString[1] = 'e';
-aString[2] = 's';
-aString[3] = 'e';
-aString[4] = 't';
-aString[5] = '\0';
-*/
 
 void testme()
 {
