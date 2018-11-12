@@ -37,7 +37,7 @@ int main() {
 
   printf("Testing Smithy\n");
 
-  int iteration = 100;
+  int iteration = 1000;
   for(int i = 0; i < iteration; i++){
     struct gameState G, testG;
     int k[10] = {adventurer, smithy, steward, embargo, minion, village, mine, cutpurse, sea_hag, tribute}; 

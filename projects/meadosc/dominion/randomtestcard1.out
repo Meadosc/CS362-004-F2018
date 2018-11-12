@@ -1,6 +1,6 @@
 randomtestcard1.c:
 Testing Smithy
-Tests Failed: 200
+Tests Failed: 2000
 File 'dominion.c'
 Lines executed:25.71% of 560
 Creating 'dominion.c.gcov'

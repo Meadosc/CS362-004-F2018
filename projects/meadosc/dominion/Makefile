@@ -36,11 +36,24 @@ player: player.c interface.o
 
 randomtest: dominion.h dominion.c rngs.h rngs.c
 	rm -f randomtestcard1.out
+	rm -f randomtestcard2.out
+	rm -f randomtestadventurer.out
 
 	echo "randomtestcard1.c:" >> randomtestcard1.out
 	gcc -o randomtestcard1 randomtestcard1.c dominion.h dominion.c rngs.h rngs.c  $(CFLAGS)
 	./randomtestcard1 >> randomtestcard1.out
 	gcov dominion.c >> randomtestcard1.out
+
+	echo "randomtestcard2.c:" >> randomtestcard2.out
+	gcc -o randomtestcard2 randomtestcard2.c dominion.h dominion.c rngs.h rngs.c  $(CFLAGS)
+	./randomtestcard2 >> randomtestcard2.out
+	gcov dominion.c >> randomtestcard2.out
+
+	echo "randomtestadventurer.c:" >> randomtestadventurer.out
+	gcc -o randomtestadventurer randomtestadventurer.c dominion.h dominion.c rngs.h rngs.c  $(CFLAGS)
+	./randomtestadventurer >> randomtestadventurer.out
+	gcov dominion.c >> randomtestadventurer.out
+
 
 
 
