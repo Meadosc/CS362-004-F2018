@@ -10,12 +10,12 @@
         -:    5:#include <math.h>
         -:    6:#include <stdlib.h>
         -:    7:
-       30:    8:int compare(const void* a, const void* b) {
-       30:    9:  if (*(int*)a > *(int*)b)
+     4605:    8:int compare(const void* a, const void* b) {
+     4605:    9:  if (*(int*)a > *(int*)b)
     #####:   10:    return 1;
-       30:   11:  if (*(int*)a < *(int*)b)
-        8:   12:    return -1;
-       22:   13:  return 0;
+     4605:   11:  if (*(int*)a < *(int*)b)
+     1228:   12:    return -1;
+     3377:   13:  return 0;
         -:   14:}
         -:   15:
     #####:   16:struct gameState* newGame() {
@@ -39,31 +39,31 @@
     #####:   34:  return k;
         -:   35:}
         -:   36:
-        1:   37:int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
+      100:   37:int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
         -:   38:		   struct gameState *state) {
         -:   39:
         -:   40:  int i;
         -:   41:  int j;
         -:   42:  int it;			
         -:   43:  //set up random number generator
-        1:   44:  SelectStream(1);
-        1:   45:  PutSeed((long)randomSeed);
+      100:   44:  SelectStream(1);
+      100:   45:  PutSeed((long)randomSeed);
         -:   46:  
         -:   47:  //check number of players
-        1:   48:  if (numPlayers > MAX_PLAYERS || numPlayers < 2)
+      100:   48:  if (numPlayers > MAX_PLAYERS || numPlayers < 2)
         -:   49:    {
     #####:   50:      return -1;
         -:   51:    }
         -:   52:
         -:   53:  //set number of players
-        1:   54:  state->numPlayers = numPlayers;
+      100:   54:  state->numPlayers = numPlayers;
         -:   55:
         -:   56:  //check selected kingdom cards are different
-       11:   57:  for (i = 0; i < 10; i++)
+     1100:   57:  for (i = 0; i < 10; i++)
         -:   58:    {
-      110:   59:      for (j = 0; j < 10; j++)
+    11000:   59:      for (j = 0; j < 10; j++)
         -:   60:        {
-      100:   61:	  if (j != i && kingdomCards[j] == kingdomCards[i])
+    10000:   61:	  if (j != i && kingdomCards[j] == kingdomCards[i])
         -:   62:	    {
     #####:   63:	      return -1;
         -:   64:	    }
@@ -75,47 +75,47 @@
         -:   70:  ///////////////////////////////
         -:   71:
         -:   72:  //set number of Curse cards
-        1:   73:  if (numPlayers == 2)
+      100:   73:  if (numPlayers == 2)
         -:   74:    {
-        1:   75:      state->supplyCount[curse] = 10;
+       34:   75:      state->supplyCount[curse] = 10;
         -:   76:    }
-    #####:   77:  else if (numPlayers == 3)
+       66:   77:  else if (numPlayers == 3)
         -:   78:    {
-    #####:   79:      state->supplyCount[curse] = 20;
+       25:   79:      state->supplyCount[curse] = 20;
         -:   80:    }
         -:   81:  else
         -:   82:    {
-    #####:   83:      state->supplyCount[curse] = 30;
+       41:   83:      state->supplyCount[curse] = 30;
         -:   84:    }
         -:   85:
         -:   86:  //set number of Victory cards
-        1:   87:  if (numPlayers == 2)
+      100:   87:  if (numPlayers == 2)
         -:   88:    {
-        1:   89:      state->supplyCount[estate] = 8;
-        1:   90:      state->supplyCount[duchy] = 8;
-        1:   91:      state->supplyCount[province] = 8;
+       34:   89:      state->supplyCount[estate] = 8;
+       34:   90:      state->supplyCount[duchy] = 8;
+       34:   91:      state->supplyCount[province] = 8;
         -:   92:    }
         -:   93:  else
         -:   94:    {
-    #####:   95:      state->supplyCount[estate] = 12;
-    #####:   96:      state->supplyCount[duchy] = 12;
-    #####:   97:      state->supplyCount[province] = 12;
+       66:   95:      state->supplyCount[estate] = 12;
+       66:   96:      state->supplyCount[duchy] = 12;
+       66:   97:      state->supplyCount[province] = 12;
         -:   98:    }
         -:   99:
         -:  100:  //set number of Treasure cards
-        1:  101:  state->supplyCount[copper] = 60 - (7 * numPlayers);
-        1:  102:  state->supplyCount[silver] = 40;
-        1:  103:  state->supplyCount[gold] = 30;
+      100:  101:  state->supplyCount[copper] = 60 - (7 * numPlayers);
+      100:  102:  state->supplyCount[silver] = 40;
+      100:  103:  state->supplyCount[gold] = 30;
         -:  104:
         -:  105:  //set number of Kingdom cards
-       21:  106:  for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
+     2100:  106:  for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
         -:  107:    {
-      165:  108:      for (j = 0; j < 10; j++)           		//loop chosen cards
+    16500:  108:      for (j = 0; j < 10; j++)           		//loop chosen cards
         -:  109:	{
-      155:  110:	  if (kingdomCards[j] == i)
+    15500:  110:	  if (kingdomCards[j] == i)
         -:  111:	    {
         -:  112:	      //check if card is a 'Victory' Kingdom card
-       10:  113:	      if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
+     1000:  113:	      if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
         -:  114:		{
     #####:  115:		  if (numPlayers == 2){ 
     #####:  116:		    state->supplyCount[i] = 8; 
@@ -124,13 +124,13 @@
         -:  119:		}
         -:  120:	      else
         -:  121:		{
-       10:  122:		  state->supplyCount[i] = 10;
+     1000:  122:		  state->supplyCount[i] = 10;
         -:  123:		}
-       10:  124:	      break;
+     1000:  124:	      break;
         -:  125:	    }
         -:  126:	  else    //card is not in the set choosen for the game
         -:  127:	    {
-      145:  128:	      state->supplyCount[i] = -1;
+    14500:  128:	      state->supplyCount[i] = -1;
         -:  129:	    }
         -:  130:	}
         -:  131:
@@ -140,36 +140,36 @@
         -:  135:  //supply intilization complete
         -:  136:
         -:  137:  //set player decks
-        3:  138:  for (i = 0; i < numPlayers; i++)
+      407:  138:  for (i = 0; i < numPlayers; i++)
         -:  139:    {
-        2:  140:      state->deckCount[i] = 0;
-        8:  141:      for (j = 0; j < 3; j++)
+      307:  140:      state->deckCount[i] = 0;
+     1228:  141:      for (j = 0; j < 3; j++)
         -:  142:	{
-        6:  143:	  state->deck[i][j] = estate;
-        6:  144:	  state->deckCount[i]++;
+      921:  143:	  state->deck[i][j] = estate;
+      921:  144:	  state->deckCount[i]++;
         -:  145:	}
-       16:  146:      for (j = 3; j < 10; j++)
+     2456:  146:      for (j = 3; j < 10; j++)
         -:  147:	{
-       14:  148:	  state->deck[i][j] = copper;
-       14:  149:	  state->deckCount[i]++;		
+     2149:  148:	  state->deck[i][j] = copper;
+     2149:  149:	  state->deckCount[i]++;		
         -:  150:	}
         -:  151:    }
         -:  152:
         -:  153:  //shuffle player decks
-        3:  154:  for (i = 0; i < numPlayers; i++)
+      407:  154:  for (i = 0; i < numPlayers; i++)
         -:  155:    {
-        2:  156:      if ( shuffle(i, state) < 0 )
+      307:  156:      if ( shuffle(i, state) < 0 )
         -:  157:	{
     #####:  158:	  return -1;
         -:  159:	}
         -:  160:    }
         -:  161:
         -:  162:  //draw player hands
-        3:  163:  for (i = 0; i < numPlayers; i++)
+      407:  163:  for (i = 0; i < numPlayers; i++)
         -:  164:    {  
         -:  165:      //initialize hand size to zero
-        2:  166:      state->handCount[i] = 0;
-        2:  167:      state->discardCount[i] = 0;
+      307:  166:      state->handCount[i] = 0;
+      307:  167:      state->discardCount[i] = 0;
         -:  168:      //draw 5 cards
         -:  169:      // for (j = 0; j < 5; j++)
         -:  170:      //	{
@@ -178,59 +178,59 @@
         -:  173:    }
         -:  174:  
         -:  175:  //set embargo tokens to 0 for all supply piles
-       28:  176:  for (i = 0; i <= treasure_map; i++)
+     2800:  176:  for (i = 0; i <= treasure_map; i++)
         -:  177:    {
-       27:  178:      state->embargoTokens[i] = 0;
+     2700:  178:      state->embargoTokens[i] = 0;
         -:  179:    }
         -:  180:
         -:  181:  //initialize first player's turn
-        1:  182:  state->outpostPlayed = 0;
-        1:  183:  state->phase = 0;
-        1:  184:  state->numActions = 1;
-        1:  185:  state->numBuys = 1;
-        1:  186:  state->playedCardCount = 0;
-        1:  187:  state->whoseTurn = 0;
-        1:  188:  state->handCount[state->whoseTurn] = 0;
+      100:  182:  state->outpostPlayed = 0;
+      100:  183:  state->phase = 0;
+      100:  184:  state->numActions = 1;
+      100:  185:  state->numBuys = 1;
+      100:  186:  state->playedCardCount = 0;
+      100:  187:  state->whoseTurn = 0;
+      100:  188:  state->handCount[state->whoseTurn] = 0;
         -:  189:  //int it; move to top
         -:  190:
         -:  191:  //Moved draw cards to here, only drawing at the start of a turn
-        6:  192:  for (it = 0; it < 5; it++){
-        5:  193:    drawCard(state->whoseTurn, state);
+      600:  192:  for (it = 0; it < 5; it++){
+      500:  193:    drawCard(state->whoseTurn, state);
         -:  194:  }
         -:  195:
-        1:  196:  updateCoins(state->whoseTurn, state, 0);
+      100:  196:  updateCoins(state->whoseTurn, state, 0);
         -:  197:
-        1:  198:  return 0;
+      100:  198:  return 0;
         -:  199:}
         -:  200:
-        5:  201:int shuffle(int player, struct gameState *state) {
+      307:  201:int shuffle(int player, struct gameState *state) {
         -:  202: 
         -:  203:
         -:  204:  int newDeck[MAX_DECK];
-        5:  205:  int newDeckPos = 0;
+      307:  205:  int newDeckPos = 0;
         -:  206:  int card;
         -:  207:  int i;
         -:  208:
-        5:  209:  if (state->deckCount[player] < 1)
-        2:  210:    return -1;
-        3:  211:  qsort ((void*)(state->deck[player]), state->deckCount[player], sizeof(int), compare); 
+      307:  209:  if (state->deckCount[player] < 1)
+    #####:  210:    return -1;
+      307:  211:  qsort ((void*)(state->deck[player]), state->deckCount[player], sizeof(int), compare); 
         -:  212:  /* SORT CARDS IN DECK TO ENSURE DETERMINISM! */
         -:  213:
-       27:  214:  while (state->deckCount[player] > 0) {
-       21:  215:    card = floor(Random() * state->deckCount[player]);
-       21:  216:    newDeck[newDeckPos] = state->deck[player][card];
-       21:  217:    newDeckPos++;
-       73:  218:    for (i = card; i < state->deckCount[player]-1; i++) {
-       52:  219:      state->deck[player][i] = state->deck[player][i+1];
+     3684:  214:  while (state->deckCount[player] > 0) {
+     3070:  215:    card = floor(Random() * state->deckCount[player]);
+     3070:  216:    newDeck[newDeckPos] = state->deck[player][card];
+     3070:  217:    newDeckPos++;
+     9878:  218:    for (i = card; i < state->deckCount[player]-1; i++) {
+     6808:  219:      state->deck[player][i] = state->deck[player][i+1];
         -:  220:    }
-       21:  221:    state->deckCount[player]--;
+     3070:  221:    state->deckCount[player]--;
         -:  222:  }
-       24:  223:  for (i = 0; i < newDeckPos; i++) {
-       21:  224:    state->deck[player][i] = newDeck[i];
-       21:  225:    state->deckCount[player]++;
+     3377:  223:  for (i = 0; i < newDeckPos; i++) {
+     3070:  224:    state->deck[player][i] = newDeck[i];
+     3070:  225:    state->deckCount[player]++;
         -:  226:  }
         -:  227:
-        3:  228:  return 0;
+      307:  228:  return 0;
         -:  229:}
         -:  230:
     #####:  231:int playCard(int handPos, int choice1, int choice2, int choice3, struct gameState *state) 
@@ -322,8 +322,8 @@
     #####:  317:  return state->hand[currentPlayer][handPos];
         -:  318:}
         -:  319:
-        2:  320:int supplyCount(int card, struct gameState *state) {
-        2:  321:  return state->supplyCount[card];
+      300:  320:int supplyCount(int card, struct gameState *state) {
+      300:  321:  return state->supplyCount[card];
         -:  322:}
         -:  323:
     #####:  324:int fullDeckCount(int player, int card, struct gameState *state) {
@@ -348,8 +348,8 @@
     #####:  343:  return count;
         -:  344:}
         -:  345:
-        1:  346:int whoseTurn(struct gameState *state) {
-        1:  347:  return state->whoseTurn;
+      100:  346:int whoseTurn(struct gameState *state) {
+      100:  347:  return state->whoseTurn;
         -:  348:}
         -:  349:
     #####:  350:int endTurn(struct gameState *state) {
@@ -527,70 +527,70 @@
     #####:  522:  return 0;
         -:  523:}
         -:  524:
-       14:  525:int drawCard(int player, struct gameState *state)
+     1000:  525:int drawCard(int player, struct gameState *state)
         -:  526:{	int count;
         -:  527:  int deckCounter;
-       14:  528:  if (state->deckCount[player] <= 0){//Deck is empty
+     1000:  528:  if (state->deckCount[player] <= 0){//Deck is empty
         -:  529:    
         -:  530:    //Step 1 Shuffle the discard pile back into a deck
         -:  531:    int i;
         -:  532:    //Move discard to deck
-        4:  533:    for (i = 0; i < state->discardCount[player];i++){
-        1:  534:      state->deck[player][i] = state->discard[player][i];
-        1:  535:      state->discard[player][i] = -1;
+    #####:  533:    for (i = 0; i < state->discardCount[player];i++){
+    #####:  534:      state->deck[player][i] = state->discard[player][i];
+    #####:  535:      state->discard[player][i] = -1;
         -:  536:    }
         -:  537:
-        3:  538:    state->deckCount[player] = state->discardCount[player];
-        3:  539:    state->discardCount[player] = 0;//Reset discard
+    #####:  538:    state->deckCount[player] = state->discardCount[player];
+    #####:  539:    state->discardCount[player] = 0;//Reset discard
         -:  540:
         -:  541:    //Shufffle the deck
-        3:  542:    shuffle(player, state);//Shuffle the deck up and make it so that we can draw
+    #####:  542:    shuffle(player, state);//Shuffle the deck up and make it so that we can draw
         -:  543:   
         -:  544:    if (DEBUG){//Debug statements
         -:  545:      printf("Deck count now: %d\n", state->deckCount[player]);
         -:  546:    }
         -:  547:    
-        3:  548:    state->discardCount[player] = 0;
+    #####:  548:    state->discardCount[player] = 0;
         -:  549:
         -:  550:    //Step 2 Draw Card
-        3:  551:    count = state->handCount[player];//Get current player's hand count
+    #####:  551:    count = state->handCount[player];//Get current player's hand count
         -:  552:    
         -:  553:    if (DEBUG){//Debug statements
         -:  554:      printf("Current hand count: %d\n", count);
         -:  555:    }
         -:  556:    
-        3:  557:    deckCounter = state->deckCount[player];//Create a holder for the deck count
+    #####:  557:    deckCounter = state->deckCount[player];//Create a holder for the deck count
         -:  558:
-        3:  559:    if (deckCounter == 0)
-        2:  560:      return -1;
+    #####:  559:    if (deckCounter == 0)
+    #####:  560:      return -1;
         -:  561:
-        1:  562:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
-        1:  563:    state->deckCount[player]--;
-        1:  564:    state->handCount[player]++;//Increment hand count
+    #####:  562:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
+    #####:  563:    state->deckCount[player]--;
+    #####:  564:    state->handCount[player]++;//Increment hand count
         -:  565:  }
         -:  566:
         -:  567:  else{
-       11:  568:    int count = state->handCount[player];//Get current hand count for player
+     1000:  568:    int count = state->handCount[player];//Get current hand count for player
         -:  569:    int deckCounter;
         -:  570:    if (DEBUG){//Debug statements
         -:  571:      printf("Current hand count: %d\n", count);
         -:  572:    }
         -:  573:
-       11:  574:    deckCounter = state->deckCount[player];//Create holder for the deck count
-       11:  575:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
-       11:  576:    state->deckCount[player]--;
-       11:  577:    state->handCount[player]++;//Increment hand count
+     1000:  574:    deckCounter = state->deckCount[player];//Create holder for the deck count
+     1000:  575:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
+     1000:  576:    state->deckCount[player]--;
+     1000:  577:    state->handCount[player]++;//Increment hand count
         -:  578:  }
         -:  579:
-       12:  580:  return 0;
+     1000:  580:  return 0;
         -:  581:}
         -:  582:
-        1:  583:int getCost(int cardNumber)
+    #####:  583:int getCost(int cardNumber)
         -:  584:{
-        1:  585:  switch( cardNumber ) 
+    #####:  585:  switch( cardNumber ) 
         -:  586:    {
         -:  587:    case curse:
-        1:  588:      return 0;
+    #####:  588:      return 0;
         -:  589:    case estate:
     #####:  590:      return 2;
         -:  591:    case duchy:
@@ -648,69 +648,69 @@
     #####:  643:  return -1;
         -:  644:}
         -:  645:
-        1:  646:int adventurerFunct(int drawntreasure, int cardDrawn, int z,int currentPlayer, int* temphand, struct gameState *state)
+    #####:  646:int adventurerFunct(int drawntreasure, int cardDrawn, int z,int currentPlayer, int* temphand, struct gameState *state)
         -:  647:{
-        6:  648:       while(drawntreasure<3){
-        4:  649:	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+    #####:  648:       while(drawntreasure<3){
+    #####:  649:	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
     #####:  650:	  shuffle(currentPlayer, state);
         -:  651:	}
-        4:  652:	drawCard(currentPlayer, state);
-        4:  653:	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-        4:  654:	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-        3:  655:	  drawntreasure++;
+    #####:  652:	drawCard(currentPlayer, state);
+    #####:  653:	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+    #####:  654:	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+    #####:  655:	  drawntreasure++;
         -:  656:	else{
-        1:  657:	  temphand[z]=cardDrawn;
-        1:  658:	  state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
-        1:  659:	  z++;
+    #####:  657:	  temphand[z]=cardDrawn;
+    #####:  658:	  state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+    #####:  659:	  z++;
         -:  660:	}
         -:  661:      }
-        3:  662:      while(z-1>=0){
-        1:  663:	state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-        1:  664:	z=z-1;
+    #####:  662:      while(z-1>=0){
+    #####:  663:	state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+    #####:  664:	z=z-1;
         -:  665:      }
-        1:  666:      return 0;
+    #####:  666:      return 0;
         -:  667:}
         -:  668:
-    #####:  669:int smithyFunct(int currentPlayer, struct gameState *state,int handPos)
+      100:  669:int smithyFunct(int currentPlayer, struct gameState *state,int handPos)
         -:  670:{
         -:  671:    //+3 Cards
         -:  672:    int i;
-    #####:  673:    for (i = 0; i <= 3; i++)
+      500:  673:    for (i = 0; i <= 3; i++)
         -:  674:	{
-    #####:  675:	  drawCard(currentPlayer, state);
+      400:  675:	  drawCard(currentPlayer, state);
         -:  676:	}
         -:  677:			
         -:  678:    //discard card from hand
-    #####:  679:    discardCard(handPos, currentPlayer, state, 0);
-    #####:  680:    return 0;
+      100:  679:    discardCard(handPos, currentPlayer, state, 0);
+      100:  680:    return 0;
         -:  681:	
         -:  682:}
-        1:  683:int councilRoomFunct(int currentPlayer, struct gameState *state, int handPos)
+    #####:  683:int councilRoomFunct(int currentPlayer, struct gameState *state, int handPos)
         -:  684:{
         -:  685:      //+4 Cards
         -:  686:      int i;
-        5:  687:      for (i = 0; i < 4; i++)
+    #####:  687:      for (i = 0; i < 4; i++)
         -:  688:	{
-        4:  689:	  drawCard(currentPlayer, state);
+    #####:  689:	  drawCard(currentPlayer, state);
         -:  690:	}
         -:  691:			
         -:  692:      //+1 Buy
-        1:  693:      state->numBuys++;
-        1:  694:      state->numBuys++;
+    #####:  693:      state->numBuys++;
+    #####:  694:      state->numBuys++;
         -:  695:
         -:  696:      //Each other player draws a card
-        3:  697:      for (i = 0; i < state->numPlayers; i++)
+    #####:  697:      for (i = 0; i < state->numPlayers; i++)
         -:  698:	{
-        2:  699:	  if ( i != currentPlayer )
+    #####:  699:	  if ( i != currentPlayer )
         -:  700:	    {
-        1:  701:	      drawCard(i, state);
+    #####:  701:	      drawCard(i, state);
         -:  702:	    }
         -:  703:	}
         -:  704:			
         -:  705:      //put played card in played card pile
-        1:  706:      discardCard(handPos, currentPlayer, state, 0);
+    #####:  706:      discardCard(handPos, currentPlayer, state, 0);
         -:  707:			
-        1:  708:      return 0;
+    #####:  708:      return 0;
         -:  709:}
         -:  710:
     #####:  711:int gardensFunct()
@@ -718,62 +718,62 @@
     #####:  713:  return -1;
         -:  714:}
         -:  715:
-    #####:  716:int villageFunct(int currentPlayer, struct gameState *state,int handPos)
+      100:  716:int villageFunct(int currentPlayer, struct gameState *state,int handPos)
         -:  717:{
         -:  718:      //+1 Card
-    #####:  719:      drawCard(currentPlayer, state);
+      100:  719:      drawCard(currentPlayer, state);
         -:  720:			
         -:  721:      //+2 Actions
-    #####:  722:      state->numActions = state->numActions + 3;
+      100:  722:      state->numActions = state->numActions + 3;
         -:  723:			
         -:  724:      //discard played card from hand
-    #####:  725:      discardCard(handPos, currentPlayer, state, 0);
-    #####:  726:      return 0;
+      100:  725:      discardCard(handPos, currentPlayer, state, 0);
+      100:  726:      return 0;
         -:  727:}
         -:  728:	
-        1:  729:int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
+      100:  729:int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
         -:  730:{
         -:  731:  int i;
         -:  732:  int j;
         -:  733:  int k;
         -:  734:  int x;
         -:  735:  int index;
-        1:  736:  int currentPlayer = whoseTurn(state);
-        1:  737:  int nextPlayer = currentPlayer + 1;
+      100:  736:  int currentPlayer = whoseTurn(state);
+      100:  737:  int nextPlayer = currentPlayer + 1;
         -:  738:
-        1:  739:  int tributeRevealedCards[2] = {-1, -1};
+      100:  739:  int tributeRevealedCards[2] = {-1, -1};
         -:  740:  int temphand[MAX_HAND];// moved above the if statement
-        1:  741:  int drawntreasure=0;
-        1:  742:  int cardDrawn=0;
-        1:  743:  int z = 0;// this is the counter for the temp hand
-        1:  744:  if (nextPlayer > (state->numPlayers - 1)){
+      100:  741:  int drawntreasure=0;
+      100:  742:  int cardDrawn=0;
+      100:  743:  int z = 0;// this is the counter for the temp hand
+      100:  744:  if (nextPlayer > (state->numPlayers - 1)){
     #####:  745:    nextPlayer = 0;
         -:  746:  }
         -:  747:  
         -:  748:	
         -:  749:  //uses switch to select card and perform actions
-        1:  750:  switch( card ) 
+      100:  750:  switch( card ) 
         -:  751:    {
         -:  752:    case adventurer:
-        1:  753:      adventurerFunct(drawntreasure, cardDrawn, z, currentPlayer, temphand, state);
+    #####:  753:      adventurerFunct(drawntreasure, cardDrawn, z, currentPlayer, temphand, state);
         -:  754: 		
         -:  755:    case council_room:
-        1:  756:      councilRoomFunct(currentPlayer,state,handPos);
+    #####:  756:      councilRoomFunct(currentPlayer,state,handPos);
         -:  757:
         -:  758:   case feast:
         -:  759:      //gain card with cost up to 5
         -:  760:      //Backup hand
-       11:  761:      for (i = 0; i <= state->handCount[currentPlayer]; i++){
-       10:  762:	temphand[i] = state->hand[currentPlayer][i];//Backup card
-       10:  763:	state->hand[currentPlayer][i] = -1;//Set to nothing
+    #####:  761:      for (i = 0; i <= state->handCount[currentPlayer]; i++){
+    #####:  762:	temphand[i] = state->hand[currentPlayer][i];//Backup card
+    #####:  763:	state->hand[currentPlayer][i] = -1;//Set to nothing
         -:  764:      }
         -:  765:      //Backup hand
         -:  766:
         -:  767:      //Update Coins for Buy
-        1:  768:      updateCoins(currentPlayer, state, 5);
-        1:  769:      x = 1;//Condition to loop on
-        3:  770:      while( x == 1) {//Buy one card
-        1:  771:	if (supplyCount(choice1, state) <= 0){
+    #####:  768:      updateCoins(currentPlayer, state, 5);
+    #####:  769:      x = 1;//Condition to loop on
+    #####:  770:      while( x == 1) {//Buy one card
+    #####:  771:	if (supplyCount(choice1, state) <= 0){
         -:  772:	  if (DEBUG)
         -:  773:	    printf("None of that card left, sorry!\n");
         -:  774:
@@ -781,7 +781,7 @@
         -:  776:	    printf("Cards Left: %d\n", supplyCount(choice1, state));
         -:  777:	  }
         -:  778:	}
-        1:  779:	else if (state->coins < getCost(choice1)){
+    #####:  779:	else if (state->coins < getCost(choice1)){
     #####:  780:	  printf("That card is too expensive!\n");
         -:  781:
         -:  782:	  if (DEBUG){
@@ -794,8 +794,8 @@
         -:  789:	    printf("Deck Count: %d\n", state->handCount[currentPlayer] + state->deckCount[currentPlayer] + state->discardCount[currentPlayer]);
         -:  790:	  }
         -:  791:
-        1:  792:	  gainCard(choice1, state, 0, currentPlayer);//Gain the card
-        1:  793:	  x = 0;//No more buying cards
+    #####:  792:	  gainCard(choice1, state, 0, currentPlayer);//Gain the card
+    #####:  793:	  x = 0;//No more buying cards
         -:  794:
         -:  795:	  if (DEBUG){
         -:  796:	    printf("Deck Count: %d\n", state->handCount[currentPlayer] + state->deckCount[currentPlayer] + state->discardCount[currentPlayer]);
@@ -805,13 +805,13 @@
         -:  800:      }     
         -:  801:
         -:  802:      //Reset Hand
-       11:  803:      for (i = 0; i <= state->handCount[currentPlayer]; i++){
-       10:  804:	state->hand[currentPlayer][i] = temphand[i];
-       10:  805:	temphand[i] = -1;
+    #####:  803:      for (i = 0; i <= state->handCount[currentPlayer]; i++){
+    #####:  804:	state->hand[currentPlayer][i] = temphand[i];
+    #####:  805:	temphand[i] = -1;
         -:  806:      }
         -:  807:      //Reset Hand
         -:  808:      			
-        1:  809:      return 0;
+    #####:  809:      return 0;
         -:  810:			
         -:  811:    case gardens:
     #####:  812:      gardensFunct();
@@ -878,16 +878,16 @@
     #####:  873:      return 0;
         -:  874:		
         -:  875:    case smithy:
-    #####:  876:      smithyFunct(currentPlayer,state,handPos);
+      100:  876:      smithyFunct(currentPlayer,state,handPos);
         -:  877:     
         -:  878:	
         -:  879:    case village:
-    #####:  880:      villageFunct(currentPlayer,state,handPos);
+      100:  880:      villageFunct(currentPlayer,state,handPos);
         -:  881:
         -:  882:	
         -:  883:    case baron:
-    #####:  884:      state->numBuys++;//Increase buys by 1!
-    #####:  885:      if (choice1 > 0){//Boolean true or going to discard an estate
+      100:  884:      state->numBuys++;//Increase buys by 1!
+      100:  885:      if (choice1 > 0){//Boolean true or going to discard an estate
     #####:  886:	int p = 0;//Iterator for hand!
     #####:  887:	int card_not_discarded = 1;//Flag for discard set!
     #####:  888:	while(card_not_discarded){
@@ -924,17 +924,17 @@
         -:  919:      }
         -:  920:			    
         -:  921:      else{
-    #####:  922:	if (supplyCount(estate, state) > 0){
-    #####:  923:	  gainCard(estate, state, 0, currentPlayer);//Gain an estate
-    #####:  924:	  state->supplyCount[estate]--;//Decrement Estates
-    #####:  925:	  if (supplyCount(estate, state) == 0){
+      100:  922:	if (supplyCount(estate, state) > 0){
+      100:  923:	  gainCard(estate, state, 0, currentPlayer);//Gain an estate
+      100:  924:	  state->supplyCount[estate]--;//Decrement Estates
+      100:  925:	  if (supplyCount(estate, state) == 0){
     #####:  926:	    isGameOver(state);
         -:  927:	  }
         -:  928:	}
         -:  929:      }
         -:  930:	    
         -:  931:      
-    #####:  932:      return 0;
+      100:  932:      return 0;
         -:  933:		
         -:  934:    case great_hall:
         -:  935:      //+1 Card
@@ -1258,27 +1258,27 @@
     #####: 1253:  return -1;
         -: 1254:}
         -: 1255:
-        1: 1256:int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
+      200: 1256:int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
         -: 1257:{
         -: 1258:	
         -: 1259:  //if card is not trashed, added to Played pile 
-        1: 1260:  if (trashFlag < 1)
+      200: 1260:  if (trashFlag < 1)
         -: 1261:    {
         -: 1262:      //add card to played pile
-        1: 1263:      state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
-        1: 1264:      state->playedCardCount++;
+      200: 1263:      state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
+      200: 1264:      state->playedCardCount++;
         -: 1265:    }
         -: 1266:	
         -: 1267:  //set played card to -1
-        1: 1268:  state->hand[currentPlayer][handPos] = -1;
+      200: 1268:  state->hand[currentPlayer][handPos] = -1;
         -: 1269:	
         -: 1270:  //remove card from player's hand
-        1: 1271:  if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+      200: 1271:  if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
         -: 1272:    {
         -: 1273:      //reduce number of cards in hand
     #####: 1274:      state->handCount[currentPlayer]--;
         -: 1275:    }
-        1: 1276:  else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
+      200: 1276:  else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
         -: 1277:    {
         -: 1278:      //reduce number of cards in hand
     #####: 1279:      state->handCount[currentPlayer]--;
@@ -1286,22 +1286,22 @@
         -: 1281:  else 	
         -: 1282:    {
         -: 1283:      //replace discarded card with last card in hand
-        1: 1284:      state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
+      200: 1284:      state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
         -: 1285:      //set last card to -1
-        1: 1286:      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+      200: 1286:      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
         -: 1287:      //reduce number of cards in hand
-        1: 1288:      state->handCount[currentPlayer]--;
+      200: 1288:      state->handCount[currentPlayer]--;
         -: 1289:    }
         -: 1290:	
-        1: 1291:  return 0;
+      200: 1291:  return 0;
         -: 1292:}
         -: 1293:
-        1: 1294:int gainCard(int supplyPos, struct gameState *state, int toFlag, int player)
+      100: 1294:int gainCard(int supplyPos, struct gameState *state, int toFlag, int player)
         -: 1295:{
         -: 1296:  //Note: supplyPos is enum of choosen card
         -: 1297:	
         -: 1298:  //check if supply pile is empty (0) or card is not used in game (-1)
-        1: 1299:  if ( supplyCount(supplyPos, state) < 1 )
+      100: 1299:  if ( supplyCount(supplyPos, state) < 1 )
         -: 1300:    {
     #####: 1301:      return -1;
         -: 1302:    }
@@ -1311,56 +1311,56 @@
         -: 1306:  // toFlag = 1 : add to deck
         -: 1307:  // toFlag = 2 : add to hand
         -: 1308:
-        1: 1309:  if (toFlag == 1)
+      100: 1309:  if (toFlag == 1)
         -: 1310:    {
     #####: 1311:      state->deck[ player ][ state->deckCount[player] ] = supplyPos;
     #####: 1312:      state->deckCount[player]++;
         -: 1313:    }
-        1: 1314:  else if (toFlag == 2)
+      100: 1314:  else if (toFlag == 2)
         -: 1315:    {
     #####: 1316:      state->hand[ player ][ state->handCount[player] ] = supplyPos;
     #####: 1317:      state->handCount[player]++;
         -: 1318:    }
         -: 1319:  else
         -: 1320:    {
-        1: 1321:      state->discard[player][ state->discardCount[player] ] = supplyPos;
-        1: 1322:      state->discardCount[player]++;
+      100: 1321:      state->discard[player][ state->discardCount[player] ] = supplyPos;
+      100: 1322:      state->discardCount[player]++;
         -: 1323:    }
         -: 1324:	
         -: 1325:  //decrease number in supply pile
-        1: 1326:  state->supplyCount[supplyPos]--;
+      100: 1326:  state->supplyCount[supplyPos]--;
         -: 1327:	 
-        1: 1328:  return 0;
+      100: 1328:  return 0;
         -: 1329:}
         -: 1330:
-        2: 1331:int updateCoins(int player, struct gameState *state, int bonus)
+      100: 1331:int updateCoins(int player, struct gameState *state, int bonus)
         -: 1332:{
         -: 1333:  int i;
         -: 1334:	
         -: 1335:  //reset coin count
-        2: 1336:  state->coins = 0;
+      100: 1336:  state->coins = 0;
         -: 1337:
         -: 1338:  //add coins for each Treasure card in player's hand
-       16: 1339:  for (i = 0; i < state->handCount[player]; i++)
+      600: 1339:  for (i = 0; i < state->handCount[player]; i++)
         -: 1340:    {
-       14: 1341:      if (state->hand[player][i] == copper)
+      500: 1341:      if (state->hand[player][i] == copper)
         -: 1342:	{
-        4: 1343:	  state->coins += 1;
+      343: 1343:	  state->coins += 1;
         -: 1344:	}
-       10: 1345:      else if (state->hand[player][i] == silver)
+      157: 1345:      else if (state->hand[player][i] == silver)
         -: 1346:	{
     #####: 1347:	  state->coins += 2;
         -: 1348:	}
-       10: 1349:      else if (state->hand[player][i] == gold)
+      157: 1349:      else if (state->hand[player][i] == gold)
         -: 1350:	{
     #####: 1351:	  state->coins += 3;
         -: 1352:	}	
         -: 1353:    }	
         -: 1354:
         -: 1355:  //add bonus
-        2: 1356:  state->coins += bonus;
+      100: 1356:  state->coins += bonus;
         -: 1357:
-        2: 1358:  return 0;
+      100: 1358:  return 0;
         -: 1359:}
         -: 1360:
         -: 1361:
