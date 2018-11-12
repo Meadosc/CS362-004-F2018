@@ -1,6 +1,6 @@
 randomtestadventurer.c:
 Testing Adventurer
-Tests failed: 292
+Tests failed: 2923
 File 'dominion.c'
 Lines executed:32.86% of 560
 Creating 'dominion.c.gcov'

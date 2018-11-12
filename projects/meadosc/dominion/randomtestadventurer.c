@@ -14,7 +14,7 @@
 #include <stdlib.h>
 
 int testsFailed = 0;
-int iterations = 100;
+int iterations = 1000;
 
 int main() {
   printf("Testing Adventurer\n");
