@@ -1,0 +1,56 @@
+Results from running random tests:
+randomtestcard1.c:
+Testing Smithy
+handcount: 8, expected: 7  FAILED
+deckcount: 0, expected: 2  FAILED
+coins: 4, expected: 4  PASSED
+Testing other player's state: PASSED
+Testing Smithy
+handcount: 8, expected: 7  FAILED
+deckcount: 0, expected: 2  FAILED
+coins: 4, expected: 4  PASSED
+Testing other player's state: PASSED
+Testing Smithy
+handcount: 8, expected: 7  FAILED
+deckcount: 0, expected: 2  FAILED
+coins: 4, expected: 4  PASSED
+Testing other player's state: PASSED
+Testing Smithy
+handcount: 8, expected: 7  FAILED
+deckcount: 0, expected: 2  FAILED
+coins: 4, expected: 4  PASSED
+Testing other player's state: PASSED
+Testing Smithy
+handcount: 8, expected: 7  FAILED
+deckcount: 0, expected: 2  FAILED
+coins: 4, expected: 4  PASSED
+Testing other player's state: PASSED
+Testing Smithy
+handcount: 8, expected: 7  FAILED
+deckcount: 0, expected: 2  FAILED
+coins: 4, expected: 4  PASSED
+Testing other player's state: PASSED
+Testing Smithy
+handcount: 8, expected: 7  FAILED
+deckcount: 0, expected: 2  FAILED
+coins: 4, expected: 4  PASSED
+Testing other player's state: PASSED
+Testing Smithy
+handcount: 8, expected: 7  FAILED
+deckcount: 0, expected: 2  FAILED
+coins: 4, expected: 4  PASSED
+Testing other player's state: PASSED
+Testing Smithy
+handcount: 8, expected: 7  FAILED
+deckcount: 0, expected: 2  FAILED
+coins: 4, expected: 4  PASSED
+Testing other player's state: PASSED
+Testing Smithy
+handcount: 8, expected: 7  FAILED
+deckcount: 0, expected: 2  FAILED
+coins: 4, expected: 4  PASSED
+Testing other player's state: PASSED
+File 'dominion.c'
+Lines executed:24.64% of 560
+Creating 'dominion.c.gcov'
+
