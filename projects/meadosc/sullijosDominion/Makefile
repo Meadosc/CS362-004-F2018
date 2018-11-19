@@ -34,6 +34,25 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
+
+
+bugtest: dominion.h dominion.c rngs.h rngs.c
+	rm -f unittestresults.out
+
+	echo "cardtest3.c" >> unittestresults.out
+	gcc -o cardtest3 cardtest3.c dominion.h dominion.c rngs.h rngs.c  $(CFLAGS)
+	./cardtest3 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+
+
+
+	echo "cardtest4.c" >> unittestresults.out
+	gcc -o cardtest4 cardtest4.c dominion.h dominion.c rngs.h rngs.c  $(CFLAGS)
+	./cardtest4 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+
+
+
 randomtest: dominion.h dominion.c rngs.h rngs.c
 	rm -f randomtestcard1.out
 	rm -f randomtestcard2.out

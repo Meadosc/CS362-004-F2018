@@ -1,7 +1,7 @@
 randomtestcard2.c:
 Testing Council Room
-Tests Failed: 4923
+Tests Failed: 5000
 File 'dominion.c'
-Lines executed:27.32% of 560
+Lines executed:21.75% of 561
 Creating 'dominion.c.gcov'
 

@@ -1,77 +1,22 @@
-Results from running unit tests:
-unittest1.c:
-Test 2>1: PASSED
-Test -2>-1: PASSED
-Test 0==0: PASSED
-Test large/small: PASSED
-Test char 1: FAILED
-File 'dominion.c'
-Lines executed:1.07% of 560
-Creating 'dominion.c.gcov'
-
-unittest2.c:
-Test k1 == 1: PASSED
-Test k2 == 2: PASSED
-Test k3 == 3: PASSED
-Test k4 == 4: PASSED
-Test k5 == 5: PASSED
-Test k6 == 6: PASSED
-Test k7 == 7: PASSED
-Test k8 == 8: PASSED
-Test k9 == 9: PASSED
-Test k10 == 10: PASSED
-File 'dominion.c'
-Lines executed:2.32% of 560
-Creating 'dominion.c.gcov'
-
-unittest3.c:
-Test whoseTurn: PASSED
-File 'dominion.c'
-Lines executed:0.36% of 560
-Creating 'dominion.c.gcov'
-
-unittest4.c:
-Test supplyCount : PASSED
-File 'dominion.c'
-Lines executed:0.36% of 560
-Creating 'dominion.c.gcov'
-
-cardtest1.c:
-Testing Smithy
-handcount: 8, expected: 7  FAILED
-deckcount: 0, expected: 2  FAILED
-coins: 4, expected: 4  PASSED
-Testing other player's state: PASSED
-File 'dominion.c'
-Lines executed:24.64% of 560
-Creating 'dominion.c.gcov'
-
-cardtest2.c:
-Testing Gardens: PASSED
-Testing other player's state: PASSED
-File 'dominion.c'
-Lines executed:20.00% of 560
-Creating 'dominion.c.gcov'
-
-cardtest3.c:
+cardtest3.c
 Testing Council Room
-handcount: 8, expected: 8  PASSED
-deckcount: 1, expected: 1  PASSED
-coins: 5, expected: 4  FAILED
-number of Buys: 3, expected: 2  FAILED
+handcount: 9, expected: 8  FAILED
+deckcount: 0, expected: 1  FAILED
+coins: 4, expected: 4  PASSED
+number of Buys: 2, expected: 2  PASSED
 Other Players hand: 1, expected: 1  PASSED
 Other Players deck: 9, expected: 9  PASSED
 Testing other player's state: PASSED
 File 'dominion.c'
-Lines executed:26.25% of 560
+Lines executed:20.68% of 561
 Creating 'dominion.c.gcov'
 
-cardtest4.c:
+cardtest4.c
 Testing Adventurer
-handcount: 9, expected: 6  FAILED
-coins: 5, expected: 4  FAILED
-Testing other player's state: FAILED
+handcount: 4, expected: 6  FAILED
+coins: 4, expected: 4  PASSED
+Testing other player's state: PASSED
 File 'dominion.c'
-Lines executed:31.61% of 560
+Lines executed:22.10% of 561
 Creating 'dominion.c.gcov'
 
